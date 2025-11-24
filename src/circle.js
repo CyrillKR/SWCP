@@ -8,11 +8,13 @@ export default class Circle {
     this.endAngle = 2 * Math.PI;
   }
 
-  draw(color) {
+  draw(color, fill) {
     this.ctx.beginPath();
     this.ctx.arc(this.x, this.y, this.r, this.beginAngle, this.endAngle);
     this.ctx.fillStyle = color;
     this.ctx.stroke();
-    this.ctx.fill();
+    if (fill) {
+      this.ctx.fill();
+    }
   }
 }

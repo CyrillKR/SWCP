@@ -3,6 +3,7 @@ export default class Toolbar {
     this.tool = "circle";
     this.color = "#000000";
     this.size = 20;
+    this.fill = true;
   }
 
   setTool(tool) {
@@ -27,5 +28,13 @@ export default class Toolbar {
 
   getSize() {
     return this.size;
+  }
+
+  setFill(state) {
+    this.fill = state;
+  }
+
+  getFill() {
+    return this.fill;
   }
 }

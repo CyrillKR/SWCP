@@ -5,11 +5,14 @@ import Toolbar from "./toolbar.js";
 
 const canvas = document.querySelector("#main-screen");
 const ctx = canvas.getContext("2d");
+
 const resetBtn = document.querySelector("#reset-btn");
 const circleBtn = document.querySelector("#circle-btn");
 const squareBtn = document.querySelector("#square-btn");
 const colorPicker = document.querySelector("#color-picker");
 const sizeSelector = document.querySelector("#size-change");
+const fillCheckbox = document.querySelector("#toggle-fill");
+
 const cursor = new Cursor();
 const toolbar = new Toolbar();
 
@@ -27,10 +30,10 @@ function mainCanvasLoop(e) {
   if (cursor.getDrag()) {
     if (toolbar.getTool() == "square") {
       const square = new Square(ctx, x, y, toolbar.getSize());
-      square.draw(toolbar.getColor());
+      square.draw(toolbar.getColor(), toolbar.getFill());
     } else if (toolbar.getTool() == "circle") {
       const circle = new Circle(ctx, x, y, toolbar.getSize());
-      circle.draw(toolbar.getColor());
+      circle.draw(toolbar.getColor(), toolbar.getFill());
     }
   }
 }
@@ -46,7 +49,7 @@ function mouseClick(e) {
       coordinates.y,
       toolbar.getSize()
     );
-    square.draw(toolbar.getColor());
+    square.draw(toolbar.getColor(), toolbar.getFill());
   } else if (toolbar.getTool() == "circle") {
     const circle = new Circle(
       ctx,
@@ -54,7 +57,7 @@ function mouseClick(e) {
       coordinates.y,
       toolbar.getSize()
     );
-    circle.draw(toolbar.getColor());
+    circle.draw(toolbar.getColor(), toolbar.getFill());
   }
 }
 
@@ -72,6 +75,11 @@ function changeSize(e) {
   toolbar.setSize(parseInt(size));
 }
 
+function changeFill(e) {
+  const isFilling = e.target.checked;
+  toolbar.setFill(isFilling);
+}
+
 function init() {
   clearScreen();
 
@@ -84,6 +92,7 @@ function init() {
   });
   colorPicker.addEventListener("change", (e) => changeColor(e));
   sizeSelector.addEventListener("change", (e) => changeSize(e));
+  fillCheckbox.addEventListener("change", (e) => changeFill(e));
 
   canvas.addEventListener("mousemove", (e) => mainCanvasLoop(e));
   canvas.addEventListener("mousedown", (e) => mouseClick(e));

@@ -6,7 +6,7 @@ export default class Square {
     this.length = length;
   }
 
-  draw(color) {
+  draw(color, fill) {
     this.ctx.beginPath();
     this.ctx.fillStyle = color;
     this.ctx.moveTo(this.x - this.length / 2, this.y - this.length / 2);
@@ -15,6 +15,8 @@ export default class Square {
     this.ctx.lineTo(this.x + this.length / 2, this.y - this.length / 2);
     this.ctx.closePath();
     this.ctx.stroke();
-    this.ctx.fill();
+    if (fill) {
+      this.ctx.fill();
+    }
   }
 }
