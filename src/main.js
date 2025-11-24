@@ -10,7 +10,9 @@ const resetBtn = document.querySelector("#reset-btn");
 const circleBtn = document.querySelector("#circle-btn");
 const squareBtn = document.querySelector("#square-btn");
 const colorPicker = document.querySelector("#color-picker");
-const sizeSelector = document.querySelector("#size-change");
+const secondaryColorPicker = document.querySelector("#secondary-color-picker");
+const sizeSelector = document.querySelector("#shape-size-change");
+const lineWidthSelector = document.querySelector("#line-width-change");
 const fillCheckbox = document.querySelector("#toggle-fill");
 
 const cursor = new Cursor();
@@ -30,10 +32,20 @@ function mainCanvasLoop(e) {
   if (cursor.getDrag()) {
     if (toolbar.getTool() == "square") {
       const square = new Square(ctx, x, y, toolbar.getSize());
-      square.draw(toolbar.getColor(), toolbar.getFill());
+      square.draw(
+        toolbar.getColor(),
+        toolbar.getSecondaryColor(),
+        toolbar.getFill(),
+        toolbar.getLineWidth()
+      );
     } else if (toolbar.getTool() == "circle") {
       const circle = new Circle(ctx, x, y, toolbar.getSize());
-      circle.draw(toolbar.getColor(), toolbar.getFill());
+      circle.draw(
+        toolbar.getColor(),
+        toolbar.getSecondaryColor(),
+        toolbar.getFill(),
+        toolbar.getLineWidth()
+      );
     }
   }
 }
@@ -49,7 +61,12 @@ function mouseClick(e) {
       coordinates.y,
       toolbar.getSize()
     );
-    square.draw(toolbar.getColor(), toolbar.getFill());
+    square.draw(
+      toolbar.getColor(),
+      toolbar.getSecondaryColor(),
+      toolbar.getFill(),
+      toolbar.getLineWidth()
+    );
   } else if (toolbar.getTool() == "circle") {
     const circle = new Circle(
       ctx,
@@ -57,7 +74,12 @@ function mouseClick(e) {
       coordinates.y,
       toolbar.getSize()
     );
-    circle.draw(toolbar.getColor(), toolbar.getFill());
+    circle.draw(
+      toolbar.getColor(),
+      toolbar.getSecondaryColor(),
+      toolbar.getFill(),
+      toolbar.getLineWidth()
+    );
   }
 }
 
@@ -70,9 +92,19 @@ function changeColor(e) {
   toolbar.setColor(color);
 }
 
+function changeSecondaryColor(e) {
+  const color = e.target.value;
+  toolbar.setSecondaryColor(color);
+}
+
 function changeSize(e) {
   const size = e.target.value;
   toolbar.setSize(parseInt(size));
+}
+
+function changeLineWidth(e) {
+  const lineWidth = e.target.value;
+  toolbar.setLineWidth(parseInt(lineWidth));
 }
 
 function changeFill(e) {
@@ -91,12 +123,16 @@ function init() {
     toolbar.setTool("square");
   });
   colorPicker.addEventListener("change", (e) => changeColor(e));
+  secondaryColorPicker.addEventListener("change", (e) =>
+    changeSecondaryColor(e)
+  );
   sizeSelector.addEventListener("change", (e) => changeSize(e));
+  lineWidthSelector.addEventListener("change", (e) => changeLineWidth(e));
   fillCheckbox.addEventListener("change", (e) => changeFill(e));
 
   canvas.addEventListener("mousemove", (e) => mainCanvasLoop(e));
   canvas.addEventListener("mousedown", (e) => mouseClick(e));
-  canvas.addEventListener("mouseup", (e) => mouseRelease(e));
+  document.addEventListener("mouseup", (e) => mouseRelease(e));
 }
 
 init();

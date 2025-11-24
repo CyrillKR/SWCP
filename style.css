@@ -47,6 +47,18 @@ main {
   flex-direction: row;
   justify-content: space-between;
 }
+.toolbar-item-vertical {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+}
 
 .ui-btn {
   /* size: 3rem; */

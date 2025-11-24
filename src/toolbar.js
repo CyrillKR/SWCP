@@ -1,8 +1,10 @@
 export default class Toolbar {
   constructor() {
-    this.tool = "circle";
+    this.tool = "circle"; // circle/square
     this.color = "#000000";
-    this.size = 20;
+    this.secondaryColor = "#000000";
+    this.shapeSize = 20;
+    this.lineWidth = 1;
     this.fill = true;
   }
 
@@ -22,12 +24,28 @@ export default class Toolbar {
     return this.color;
   }
 
+  setSecondaryColor(color) {
+    this.secondaryColor = color;
+  }
+
+  getSecondaryColor() {
+    return this.secondaryColor;
+  }
+
   setSize(size) {
-    this.size = size;
+    this.shapeSize = size;
   }
 
   getSize() {
-    return this.size;
+    return this.shapeSize;
+  }
+
+  setLineWidth(width) {
+    this.lineWidth = width;
+  }
+
+  getLineWidth() {
+    return this.lineWidth;
   }
 
   setFill(state) {

@@ -20,15 +20,24 @@
               <button id="square-btn" class="ui-btn">Square</button>
             </li>
 
-            <li class="toolbar-item">
-              <label for="size-change" class="ui-btn">Size: </label>
-              <input type="number" id="size-change" value="20"></input>
+            <li class="toolbar-item-vertical">
+              <div class="input-container">
+                <label for="shape-size-change" class="ui-btn">Shape size: </label>
+                <input type="number" id="shape-size-change" value="20"></input>
+              </div>
+              <div class="input-container">
+                <label for="line-width-change" class="ui-btn">Line width: </label>
+                <input type="number" id="line-width-change" value="1"></input>
+              </div>
             </li>
 
             <li class="toolbar-item">
               <label for="color-picker" class="ui-btn">Color:</label>
               <input type="color" id="color-picker" value="#000000" />
+              <label for="secondary-color-picker" class="ui-btn">Secondary color:</label>
+              <input type="color" id="secondary-color-picker" value="#000000" />
             </li>
+
             <li class="toolbar-item">
               <label for="toggle-fill" class="ui-btn">Fill:</label>
               <input type="checkbox" id="toggle-fill" checked />
