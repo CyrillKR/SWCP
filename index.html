@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Circle!</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main>
+      <div id="work-screen">
+
+        <div class="vertical-container" id="toolbar">
+          <ul>
+            <li class="toolbar-item">
+              <button id="circle-btn" class="ui-btn">Circle</button>
+            </li>
+
+            <li class="toolbar-item">
+              <button id="square-btn" class="ui-btn">Square</button>
+            </li>
+
+            <li class="toolbar-item">
+              <label for="size-change" class="ui-btn">Size: </label>
+              <input type="number" id="size-change" value="20"></input>
+            </li>
+
+            <li class="toolbar-item">
+              <label for="color-picker" class="ui-btn">Color:</label>
+              <input type="color" id="color-picker" value="#000000" />
+            </li>
+            <li class="toolbar-item">
+              <button id="reset-btn" class="ui-btn">Reset Canvas</button>
+            </li>
+          </ul>
+        </div>
+        <canvas id="main-screen" width="800" height="600"></canvas>
+        
+      </div>
+    </main>
+    <script src="/src/main.js" type="module"></script>
+  </body>
+</html>
