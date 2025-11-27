@@ -14,6 +14,7 @@ const secondaryColorPicker = document.querySelector("#secondary-color-picker");
 const sizeSelector = document.querySelector("#shape-size-change");
 const lineWidthSelector = document.querySelector("#line-width-change");
 const fillCheckbox = document.querySelector("#toggle-fill");
+const syncColorBtn = document.querySelector("#sync-color");
 
 const cursor = new Cursor();
 const toolbar = new Toolbar();
@@ -51,7 +52,7 @@ function mainCanvasLoop(e) {
 }
 
 function mouseClick(e) {
-  cursor.toggleDrag();
+  cursor.setDragging();
   const coordinates = cursor.getCoordinates();
 
   if (toolbar.getTool() == "square") {
@@ -84,7 +85,7 @@ function mouseClick(e) {
 }
 
 function mouseRelease(e) {
-  cursor.toggleDrag();
+  cursor.setDragging();
 }
 
 function changeColor(e) {
@@ -95,6 +96,13 @@ function changeColor(e) {
 function changeSecondaryColor(e) {
   const color = e.target.value;
   toolbar.setSecondaryColor(color);
+}
+
+function syncColors(e) {
+  const mainColor = toolbar.getColor();
+  toolbar.setSecondaryColor(mainColor);
+  secondaryColorPicker.value = mainColor;
+  e.preventDefault();
 }
 
 function changeSize(e) {
@@ -110,6 +118,10 @@ function changeLineWidth(e) {
 function changeFill(e) {
   const isFilling = e.target.checked;
   toolbar.setFill(isFilling);
+}
+
+function mouseLeaveEvent(e) {
+  cursor.setDragging();
 }
 
 function init() {
@@ -129,9 +141,11 @@ function init() {
   sizeSelector.addEventListener("change", (e) => changeSize(e));
   lineWidthSelector.addEventListener("change", (e) => changeLineWidth(e));
   fillCheckbox.addEventListener("change", (e) => changeFill(e));
+  syncColorBtn.addEventListener("click", (e) => syncColors(e));
 
   canvas.addEventListener("mousemove", (e) => mainCanvasLoop(e));
   canvas.addEventListener("mousedown", (e) => mouseClick(e));
+  canvas.addEventListener("mouseleave", (e) => mouseLeaveEvent(e));
   document.addEventListener("mouseup", (e) => mouseRelease(e));
 }
 

@@ -35,9 +35,21 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 0.5rem;
   border: 1px solid white;
   margin: 2rem;
   padding: 1rem;
+}
+
+.horizontal-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.no-border {
+  border: none;
 }
 
 .toolbar-item {
@@ -55,14 +67,7 @@ main {
   justify-content: space-between;
 }
 
-.input-container {
-  display: flex;
-  flex-direction: row;
-}
-
 .ui-btn {
-  /* size: 3rem; */
-  /* margin: 2rem; */
   padding: 0.2rem;
   color: white;
   background-color: black;

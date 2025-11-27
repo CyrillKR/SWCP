@@ -20,22 +20,27 @@
               <button id="square-btn" class="ui-btn">Square</button>
             </li>
 
-            <li class="toolbar-item-vertical">
-              <div class="input-container">
+            <li class="toolbar-item-vertical vertical-container no-border">
+              <div class="horizontal-container">
                 <label for="shape-size-change" class="ui-btn">Shape size: </label>
                 <input type="number" id="shape-size-change" value="20"></input>
               </div>
-              <div class="input-container">
+              <div class="horizontal-container">
                 <label for="line-width-change" class="ui-btn">Line width: </label>
                 <input type="number" id="line-width-change" value="1"></input>
               </div>
             </li>
 
             <li class="toolbar-item">
-              <label for="color-picker" class="ui-btn">Color:</label>
-              <input type="color" id="color-picker" value="#000000" />
-              <label for="secondary-color-picker" class="ui-btn">Secondary color:</label>
-              <input type="color" id="secondary-color-picker" value="#000000" />
+              <div class="vertical-container no-border">
+                <div class="horizontal-container">
+                  <label for="color-picker" class="ui-btn">Color:</label>
+                  <input type="color" id="color-picker" value="#000000" />
+                  <label for="secondary-color-picker" class="ui-btn">Secondary color:</label>
+                  <input type="color" id="secondary-color-picker" value="#000000" />
+                </div>
+                <button id="sync-color" class="ui-btn">Sync colors</button>
+              </div>
             </li>
 
             <li class="toolbar-item">

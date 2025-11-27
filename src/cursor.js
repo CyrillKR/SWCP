@@ -14,8 +14,8 @@ export default class Cursor {
     return { x: this.x, y: this.y };
   }
 
-  toggleDrag() {
-    this.isDragging = !this.isDragging;
+  setDragging(state) {
+    this.isDragging = state;
   }
 
   getDrag() {
